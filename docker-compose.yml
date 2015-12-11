@@ -1,0 +1,16 @@
+web:
+    image: wordpress
+    links:
+     - mysql
+    environment:
+     - WORDPRESS_DB_PASSWORD=password
+    ports:
+     - "127.0.0.3:8080:80"
+    working_dir: /var/www/wpdocker
+    volumes:
+     - ./wordpress/wp-content/:/var/www/wpdocker/wp-content
+mysql:
+    image: mysql:5.7
+    environment:
+     - MYSQL_ROOT_PASSWORD=password
+     - MYSQL_DATABASE=wordpress

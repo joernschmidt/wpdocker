@@ -24,10 +24,3 @@ build:
         name: echo
         code: |
           echo "hello world!"
-
-deploy:
-  steps:
-    - heroku-deploy:
-        key: "96e2a2a6-bc33-41c5-b45a-87ee1119ef54"
-        user: "schmidt@devid.net"
-        app-name: "wp-app-devid"

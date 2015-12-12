@@ -5,10 +5,10 @@ web:
     environment:
      - WORDPRESS_DB_PASSWORD=password
     ports:
-     - "127.0.0.3:8080:80"
-    working_dir: /var/www/wpdocker
+     - "80:80"
+    working_dir: /var/www/html
     volumes:
-     - ./wordpress/wp-content/:/var/www/wpdocker/wp-content
+     - ./wordpress/wp-content/:/var/www/html/wp-content
 mysql:
     image: mysql:5.7
     environment:

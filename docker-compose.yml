@@ -1,16 +1,35 @@
-web:
+wpd:
     image: wordpress
     links:
-     - mysql
+     - wpd-db:mysql
     environment:
-     - WORDPRESS_DB_PASSWORD=password
+     - WORDPRESS_DB_PASSWORD=geheim
+     - WORDPRESS_DB_NAME=wpd
     ports:
      - "80:80"
     working_dir: /var/www/html
     volumes:
      - ./wordpress/wp-content/:/var/www/html/wp-content
-mysql:
+    container_name: wpd
+
+wpd-db:
     image: mysql:5.7
     environment:
-     - MYSQL_ROOT_PASSWORD=password
-     - MYSQL_DATABASE=wordpress
+     - MYSQL_ROOT_PASSWORD=geheim
+     - MYSQL_DATABASE=wpd
+    container_name: wpd-db
+    volumes_from: 
+     - wpd-data
+    volumes: 
+     - /var/lib/mysql:/var/lib/mysql
+    # ports:
+    #  - "3306:3306"
+
+wpd-data:
+    image: mysql:5.7
+    environment:
+     - MYSQL_ROOT_PASSWORD=geheim
+     - MYSQL_DATABASE=wpd
+    volumes:
+     - /var/lib/mysql
+    container_name: wpd-data
